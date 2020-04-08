@@ -1,0 +1,34 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: Run rspec
+    image: ruby:2.6.5
+    environment:
+      RAILS_ENV: test
+    commands:
+      - gem update bundler
+      - bundle --jobs $(nproc)
+      - bin/setup
+      - bundle exec rake spec
+    volumes:
+      - name: gem-cache
+        path: /root/.gem
+      - name: bundler-cache
+        path: /usr/local/bundle
+
+volumes:
+  - name: gem-cache
+    host:
+      path: /var/cache/drone/logicware-gem
+  - name: bundler-cache
+    host:
+      path: /var/cache/drone/logicware-bundler
+
+trigger:
+  event:
+    - push
+
+image_pull_secrets:
+  - dockerconfigjson
