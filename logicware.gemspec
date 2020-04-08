@@ -11,6 +11,17 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://www.openware.com/"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
+
+  spec.add_development_dependency 'bundler',   '>= 2.1.0'
+  spec.add_development_dependency 'rake',      '>= 13.0.0'
+  spec.add_development_dependency 'rack-test', '>= 1.1.0'
+  spec.add_development_dependency 'rspec',     '>= 3.9.0'
+  spec.add_development_dependency 'rbnacl',    '>= 7.0.0'
+  spec.add_development_dependency "pry-byebug"
+
+  spec.add_runtime_dependency 'rack'
+  spec.add_runtime_dependency 'jwt',  '~> 2.2.0'
+
   spec.metadata["allowed_push_host"] = "http://mygemserver.com"
 
   spec.metadata["homepage_uri"] = spec.homepage
